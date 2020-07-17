@@ -1,0 +1,33 @@
+{
+  "name": "RC-Flight-Log",
+  "version": "1.0.0",
+  "description": "GA SEI23 Project 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zeniethlily/RC-Flight-Log.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zeniethlily/RC-Flight-Log/issues"
+  },
+  "homepage": "https://github.com/zeniethlily/RC-Flight-Log#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.9.24",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
