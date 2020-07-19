@@ -1,3 +1,8 @@
 <div>
     <h2>Dashboard Index Placeholder</h2>
 </div>
+<div>
+    <% airplanes.forEach(airplane => { %>
+        <div><a href="/airplanes/view/<%= airplane._id %>" ><%= airplane.name %></a> </div>
+    <% }) %> 
+</div>

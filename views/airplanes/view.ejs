@@ -1,0 +1,19 @@
+<h2>view individual airplane</h2>
+<div>
+    <h3><%= airplane.name  %></h3> 
+</div>
+<div>
+    <span>Status: <%= airplane.status %> </span>
+</div>
+<div>
+    <ul>
+    <% airplane.flightLogs.forEach(log => { %>
+        <li>
+            <a href="/flightlogs/view/<%= log._id %>">LOG</a>
+        </li>
+    <% }) %> 
+    </ul>
+</div>
+<div>
+    <a href="/flightlogs/new/<%= airplane._id %>" class="btn btn-info">New Flight Log</a>
+</div>

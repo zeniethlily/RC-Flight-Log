@@ -29,8 +29,14 @@ router.get("/auth/signin", (req, res) => {
     res.render("auth/signin");
 });
 
-router.get("/dashboard", (req, res) => {
-    res.render("dashboard/index");
+router.get("/dashboard", isLoggedIn, (req, res) => {
+    User.findById(req.user._id, "airplanes")
+    .populate("airplanes")
+    .then(user => {
+        let airplanes = user.airplanes;
+        res.render("dashboard/index", { airplanes });
+    });
+    
 });
 
 router.post("/auth/signin", passport.authenticate("local", {

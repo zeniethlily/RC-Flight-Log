@@ -14,7 +14,12 @@ var airplaneSchema = new mongoose.Schema({
         enum: ["flightReady", "serviceRequired", "serviceCompleted"],
         default: "flightReady"
     },
-    flightLogs: [String],
+    flightLogs: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Flightlog"
+        }
+    ],
 },{ timestamps: true });
 
 const Airplane = mongoose.model("Airplane", airplaneSchema);
