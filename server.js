@@ -36,7 +36,7 @@ server.use(passport.session());
 server.use(flash());
 
 server.use(function(req, res, next){
-    res.locals.alert = req.flash();
+    res.locals.alerts = req.flash();
     res.locals.currentUser = req.user;
     next();
 });
