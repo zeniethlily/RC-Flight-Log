@@ -35,4 +35,15 @@ router.post("/new/:id", (req, res) => {
     })
 });
 
+router.get("/view/:id", (req, res) => {
+    Flightlog.findById(req.params.id)
+    .populate("aircraft")
+    .then(log => {
+        res.render("flightlogs/view", { log })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
 module.exports = router;
