@@ -24,7 +24,7 @@ router.post("/new/:id", (req, res) => {
     flightLog.save()
     .then(() => {
         Airplane.findByIdAndUpdate(req.params.id, {
-            $push: { flightLogs: flightLog._id }
+            $push: { flightLogs: flightLog._id, flightTotal: flightLog.duration }
         }).then(() => {
             req.flash("success", "Flight Log Created!");
             res.redirect("/dashboard");

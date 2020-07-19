@@ -6,6 +6,16 @@
     <span>Status: <%= airplane.status %> </span>
 </div>
 <div>
+    <%  let totalTime = 0;
+        let flights = 0;
+        airplane.flightTotal.forEach(flight => {
+            flights++;
+            totalTime += flight; %>
+    <% }) %>
+    <div><label>Unserviced Flights: <%= flights %></label></div> 
+    <div><label>Total Unserviced Duration: <%= totalTime %></label></div>
+</div>
+<div>
     <ul>
     <% airplane.flightLogs.forEach(log => { %>
         <li>
