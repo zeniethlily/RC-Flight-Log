@@ -45,6 +45,7 @@ server.get("/", (req, res) => {
     res.redirect("/dashboard");
 });
 
+server.use("/airplanes", require("./routes/airplane.route"));
 server.use(require("./routes/auth.route"));
 
 server.listen(process.env.PORT, () => {

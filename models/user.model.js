@@ -18,7 +18,12 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
+    airplanes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Airplane"
+        }
+    ],
 });
 
 userSchema.pre('save', function(next){
@@ -29,7 +34,7 @@ userSchema.pre('save', function(next){
     var hash = bcrypt.hashSync(user.password, 10);
 
     user.password = hash;
-    next()
+    next();
 });
 
 const User = mongoose.model("User", userSchema);
