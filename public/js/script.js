@@ -1,5 +1,5 @@
 $(function(){
     setTimeout(() => {
         $(".alert").fadeOut("slow");
-    }, 3000);
+      }, 3000);
 });
