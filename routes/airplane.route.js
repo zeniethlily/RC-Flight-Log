@@ -31,6 +31,7 @@ router.post("/new", (req, res) => {
 
 router.get("/view/:id", (req, res) => {
     Airplane.findById(req.params.id)
+    .populate("flightLogs")
     .then(airplane => {
         res.render("airplanes/view", { airplane });
     })
@@ -38,6 +39,6 @@ router.get("/view/:id", (req, res) => {
         console.log(err);
     })
     
-})
+});
 
 module.exports = router;

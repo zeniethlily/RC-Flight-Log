@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Flightlog = require("../models/flightlog.model");
 const Airplane = require("../models/airplane.model");
+const { findByIdAndDelete } = require("../models/airplane.model");
 
 router.get("/new/:id", (req, res) => {
     Airplane.findById(req.params.id)
@@ -24,7 +25,7 @@ router.post("/new/:id", (req, res) => {
     flightLog.save()
     .then(() => {
         Airplane.findByIdAndUpdate(req.params.id, {
-            $push: { flightLogs: flightLog._id, flightTotal: flightLog.duration }
+            $push: { flightLogs: flightLog._id }
         }).then(() => {
             req.flash("success", "Flight Log Created!");
             res.redirect("/dashboard");
@@ -44,6 +45,31 @@ router.get("/view/:id", (req, res) => {
     .catch((err) => {
         console.log(err);
     });
+});
+
+router.get("/delete/:planeid/:logid", async (req, res) => {
+    // Airplane.findByIdAndUpdate(req.params.planeid, { $pull: {
+    //     flightLogs: req.params.logid
+    // } })
+    // .then((airplane) => {
+    //     Flightlog.findByIdAndDelete(req.params.logid)
+    //     .then(() => {
+    //         res.redirect(`/airplanes/view/${airplane._id}`);
+    //     })
+    // })
+    // .catch((err) => {
+    //     console.log(err);
+    // });
+    try {
+        await Flightlog.findByIdAndDelete(req.params.logid);
+        let airplane = await Airplane.findByIdAndUpdate(req.params.planeid, { $pull: {
+                 flightLogs: req.params.logid } });
+
+        res.redirect(`/airplanes/view/${airplane._id}`);
+        
+    } catch (error) {
+        console.log(error);
+    }
 });
 
 module.exports = router;

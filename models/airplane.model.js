@@ -20,7 +20,7 @@ var airplaneSchema = new mongoose.Schema({
             ref: "Flightlog"
         }
     ],
-    flightTotal: [Number],
+    
 },{ timestamps: true });
 
 const Airplane = mongoose.model("Airplane", airplaneSchema);
