@@ -1,8 +1,25 @@
 <div>
     <h2>Dashboard Index Placeholder</h2>
 </div>
-<div>
-    <% airplanes.forEach(airplane => { %>
-        <div><a href="/airplanes/view/<%= airplane._id %>" ><%= airplane.name %></a> </div>
-    <% }) %> 
+<div class="row rows-cols-1 row-cols-md-3">
+    <% airplanes.forEach(airplane => { %>    
+    <div class="col mb-4">
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= airplane.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Summary</h6>
+            <%  let totalTime = 0;
+                let flights = 0;
+                airplane.flightLogs.forEach(log => {
+                    flights++;
+                    totalTime += log.duration; %>
+            <% }) %>
+          <p class="card-text">Flight Count: <%= flights %></p>
+          <p class="card-text">Accumulated Flight Time: <%= totalTime %> minutes</p>
+          <a href="/airplanes/view/<%= airplane._id %>" class="btn btn-primary">View</a>
+          <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>  
+    <% }) %>
 </div>

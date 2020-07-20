@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require("../models/user.model");
 const passport = require("../config/passportConfig");
 const isLoggedIn = require("../config/loginBlocker");
+const Flightlog = require('../models/flightlog.model');
 
 router.get("/auth/signup", (req, res) => {
     res.render("auth/signup");
@@ -31,11 +32,16 @@ router.get("/auth/signin", (req, res) => {
 
 router.get("/dashboard", isLoggedIn, (req, res) => {
     User.findById(req.user._id, "airplanes")
-    .populate("airplanes")
+    .populate({
+        path: "airplanes",
+        populate: { path: "flightLogs" }
+    })
     .then(user => {
         let airplanes = user.airplanes;
+        
         res.render("dashboard/index", { airplanes });
     });
+   
     
 });
 
