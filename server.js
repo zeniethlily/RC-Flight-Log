@@ -1,9 +1,12 @@
 const express = require('express');
 const server = express();
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const passport = require('./config/passportConfig');
 const expressLayouts = require('express-ejs-layouts');
+let moment = require('moment');
+let shortDateFormat = "Do MMMM YYYY";
 const flash = require('connect-flash');
 
 require('dotenv').config();
@@ -28,7 +31,8 @@ server.use(session({
     secret: process.env.SECRET,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 360000 }
+    cookie: { maxAge: 360000 },
+    store: new MongoStore({ url: process.env.MONGODB }),
 }));
 
 server.use(passport.initialize());
@@ -40,6 +44,9 @@ server.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
 });
+
+server.locals.moment = moment;
+server.locals.shortDateFormat = shortDateFormat;
 
 server.get("/", (req, res) => {
     res.redirect("/dashboard");

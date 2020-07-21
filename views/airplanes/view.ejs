@@ -19,7 +19,7 @@
     <ul>
     <% airplane.flightLogs.forEach(log => { %>
         <li>
-            <a href="/flightlogs/view/<%= log._id %>" class="btn btn-info">LOG</a><a href="/flightlogs/delete/<%= airplane._id %>/<%= log._id %>" class="btn btn-danger">Delete</a>
+            <a href="/flightlogs/view/<%= log._id %>" class="btn btn-info"><%= moment(log.flightDate).format(shortDateFormat) %></a><a href="/flightlogs/delete/<%= airplane._id %>/<%= log._id %>" class="btn btn-danger">Delete</a>
         </li>
     <% }) %> 
     </ul>
