@@ -6,8 +6,9 @@
         <input type="text" name="description" class="form-control" />
     </div>
     <div class="row md-3">
-        <label>Duration</label>
-        <input type="number" name="duration" class="form-control" />
+        <label for="duration">Duration</label>
+        <input type="range" class="custom-range" min="0" max="60" id="duration" name="duration">
+        <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
     </div>
     <div class="row md-3">
         <label>Flight Date</label>
