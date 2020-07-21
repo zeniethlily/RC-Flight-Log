@@ -1,3 +1,4 @@
+<div class="col mx-auto">
 <h2>view individual airplane</h2>
 <div>
     <h3><%= airplane.name  %></h3> 
@@ -15,15 +16,29 @@
     <div><label>Unserviced Flights: <%= flights %></label></div> 
     <div><label>Total Unserviced Duration: <%= totalTime %></label></div>
 </div>
-<div>
-    <ul>
-    <% airplane.flightLogs.forEach(log => { %>
-        <li>
-            <a href="/flightlogs/view/<%= log._id %>" class="btn btn-info"><%= moment(log.flightDate).format(shortDateFormat) %></a><a href="/flightlogs/delete/<%= airplane._id %>/<%= log._id %>" class="btn btn-danger">Delete</a>
-        </li>
-    <% }) %> 
-    </ul>
-</div>
+
 <div>
     <a href="/flightlogs/new/<%= airplane._id %>" class="btn btn-info">New Flight Log</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Flight Time(mins)</th>
+            <th scope="col">View</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% airplane.flightLogs.forEach(log => { %>
+            <tr>
+                <th scope="row"><%= moment(log.flightDate).format(shortDateFormat) %></th>
+                <td><%= log.duration %></td>
+                <td><a href="/flightlogs/view/<%= log._id %>" class="btn btn-info">VIEW</a></td>
+                <td><a href="/flightlogs/delete/<%= airplane._id %>/<%= log._id %>" class="btn btn-danger">Delete</a></td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
 </div>

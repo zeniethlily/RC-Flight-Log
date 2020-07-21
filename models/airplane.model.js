@@ -11,7 +11,7 @@ var airplaneSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["flightReady", "serviceRequired", "serviceCompleted"],
+        enum: ["flightReady", "serviceRequired"],
         default: "flightReady"
     },
     flightLogs: [
@@ -20,6 +20,10 @@ var airplaneSchema = new mongoose.Schema({
             ref: "Flightlog"
         }
     ],
+    maintInterval: {
+        type: Number,
+        default: 480
+    }
     
 },{ timestamps: true });
 

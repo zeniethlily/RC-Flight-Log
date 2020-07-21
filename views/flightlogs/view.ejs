@@ -1,3 +1,5 @@
+
+<div class="col mx-auto">
 <h2>Placeholder Flight Log view</h2>
 <div>
     <div>
@@ -9,11 +11,12 @@
     </div>
     <div>
         <label>Flight Date: </label>
-        <span><%= log.flightDate %> </span>
+        <span><%= moment(log.flightDate).format(shortDateFormat) %> </span>
     </div>
     <div>
         <label>Flight Duration: </label>
         <span><%= log.duration %> minutes</span>
     </div>
     <div></div>
+</div>
 </div>
