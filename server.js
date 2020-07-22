@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.MONGODB, 
+mongoose.connect(process.env.MONGODBLIVE, 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,

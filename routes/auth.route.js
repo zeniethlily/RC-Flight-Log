@@ -9,7 +9,7 @@ router.get("/auth/signup", (req, res) => {
 });
 
 router.post("/auth/signup", async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     try {
         let user = new User(req.body);
 
