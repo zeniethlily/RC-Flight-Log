@@ -23,8 +23,13 @@ var airplaneSchema = new mongoose.Schema({
     maintInterval: {
         type: Number,
         default: 480
-    }
-    
+    },
+    mLogs: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Mlog"
+        }
+    ]
 },{ timestamps: true });
 
 const Airplane = mongoose.model("Airplane", airplaneSchema);

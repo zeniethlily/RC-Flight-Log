@@ -48,18 +48,6 @@ router.get("/view/:id", (req, res) => {
 });
 
 router.get("/delete/:planeid/:logid", async (req, res) => {
-    // Airplane.findByIdAndUpdate(req.params.planeid, { $pull: {
-    //     flightLogs: req.params.logid
-    // } })
-    // .then((airplane) => {
-    //     Flightlog.findByIdAndDelete(req.params.logid)
-    //     .then(() => {
-    //         res.redirect(`/airplanes/view/${airplane._id}`);
-    //     })
-    // })
-    // .catch((err) => {
-    //     console.log(err);
-    // });
     try {
         await Flightlog.findByIdAndDelete(req.params.logid);
         let airplane = await Airplane.findByIdAndUpdate(req.params.planeid, { $pull: {

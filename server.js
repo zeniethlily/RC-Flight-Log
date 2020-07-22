@@ -34,7 +34,7 @@ server.use(session({
     secret: process.env.SECRET,
     saveUninitialized: true,
     resave: false,
-    cookie: { maxAge: 360000 },
+    cookie: { maxAge: 8640000 },
     store: new MongoStore({ url: process.env.MONGODBLIVE }),
 }));
 
