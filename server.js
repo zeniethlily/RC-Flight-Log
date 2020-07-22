@@ -55,6 +55,7 @@ server.get("/", (req, res) => {
     res.redirect("/dashboard");
 });
 
+server.use("/mlogs", require("./routes/mlog.route"));
 server.use("/flightlogs", require("./routes/flightlog.route"));
 server.use("/airplanes", require("./routes/airplane.route"));
 server.use(require("./routes/auth.route"));

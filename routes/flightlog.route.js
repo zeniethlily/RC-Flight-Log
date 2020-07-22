@@ -28,7 +28,7 @@ router.post("/new/:id", (req, res) => {
             $push: { flightLogs: flightLog._id }
         }).then(() => {
             req.flash("success", "Flight Log Created!");
-            res.redirect("/dashboard");
+            res.redirect(`/airplanes/view/${req.params.id}`);
         })
     })
     .catch((err) => {
