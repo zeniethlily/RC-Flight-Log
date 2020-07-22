@@ -11,17 +11,20 @@ const flash = require('connect-flash');
 
 require('dotenv').config();
 
+mongoose.Promise = Promise;
+
 mongoose.connect(process.env.MONGODBLIVE, 
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
         useCreateIndex: true,
-    }, 
-    () => {
+    }).then(() => {
         console.log("mongeese is running away!");
-    }
-);
+    }).catch((err) => {
+        console.log(err);
+    }); 
+    
 server.use(express.static("public"));
 server.use(express.urlencoded({ extended: true }));
 server.set("view engine", "ejs");
@@ -32,7 +35,7 @@ server.use(session({
     saveUninitialized: true,
     resave: false,
     cookie: { maxAge: 360000 },
-    store: new MongoStore({ url: process.env.MONGODB }),
+    store: new MongoStore({ url: process.env.MONGODBLIVE }),
 }));
 
 server.use(passport.initialize());
