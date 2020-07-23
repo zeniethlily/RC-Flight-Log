@@ -9,11 +9,6 @@ var airplaneSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    status: {
-        type: String,
-        enum: ["flightReady", "serviceRequired"],
-        default: "flightReady"
-    },
     flightLogs: [
         {
             type: mongoose.Schema.Types.ObjectId,

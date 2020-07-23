@@ -1,0 +1,30 @@
+
+<div>
+    <div>
+        <h2>Maintenance Logs</h2>
+    </div>
+    <div>
+        <a href="/mlogs/new/<%= airplane._id %>" class="btn btn-info">New Maintenance Log</a>
+    </div>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                
+                <th scope="col">View</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% airplane.mLogs.forEach(log => { %>
+                <tr>
+                    <th scope="row"><%= moment(log.logDate).format(shortDateFormat) %></th>
+                    
+                    <td><a href="/mlogs/view/<%= log._id %>" class="btn btn-info">VIEW</a></td>
+                    <td><a href="/mlogs/delete/<%= airplane._id %>/<%= log._id %>" class="btn btn-danger">Delete</a></td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>

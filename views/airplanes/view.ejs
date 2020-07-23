@@ -1,26 +1,48 @@
 <div class="col mx-auto">
-<h2>view individual airplane</h2>
-<div>
-    <h3><%= airplane.name  %></h3> 
-</div>
-<div>
-    <span>Status: <%= airplane.status %> </span>
-</div>
-<div>
     <%  let totalTime = 0;
         let flights = 0;
         airplane.flightLogs.forEach(log => {
             flights++;
-            totalTime += log.duration; %>
-    <% }) %>
-    <div><label>Unserviced Flights: <%= flights %></label></div> 
-    <div><label>Total Unserviced Duration: <%= totalTime %></label></div>
+            totalTime += log.duration; 
+        });
+        
+        let maints = 0;
+        let totalInterval = airplane.maintInterval;
+        airplane.mLogs.forEach(log => {
+            maints++;
+            totalInterval += airplane.maintInterval;
+        })
+
+        let status = "Flight Ready";
+        if(totalTime >= totalInterval){
+            status = "Maintenance Required";
+        } else {
+            status = "Flight Ready";
+        }
+    %>
+<div>
+    <h2><%= airplane.name  %></h2> 
+</div>
+<div>
+    <label>Status: </label>
+    <% if(status == "Maintenance Required"){ %>
+        <span class="badge badge-pill badge-warning"><%= status %></span>
+    <% } else { %> 
+        <span class="badge badge-pill badge-success"><%= status %></span>
+    <% } %> 
+</div>
+<div>
+    <div><label>Flight Count: <%= flights %></label></div> 
+    <div><label>Total Flight Time: <%= totalTime %> minutes</label></div>
+    <div><label>Maintenance Count: <%= maints %></label></div> 
+    <div><label>Next service at: <%= totalInterval %> minutes</label></div>
 </div>
 
 <div>
     <a href="/flightlogs/new/<%= airplane._id %>" class="btn btn-info">New Flight Log</a>
+    <a href="/mlogs/list/<%= airplane._id %>" class="btn btn-info">View Maintenance Logs</a>
 </div>
-
+<br>
 <table class="table">
     <thead>
         <tr>

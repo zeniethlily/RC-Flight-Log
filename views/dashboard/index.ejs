@@ -1,19 +1,41 @@
 <div class="col mx-auto">
-    <h2>Dashboard</h2>
+    <h2>RC Airplane List</h2>
 
     <div class="row rows-cols-1 row-cols-md-3">
         <% airplanes.forEach(airplane => { %>    
         <div class="col mb-4">
+            <%  let totalTime = 0;
+                let flights = 0;
+                airplane.flightLogs.forEach(log => {
+                    flights++;
+                    totalTime += log.duration; 
+                });
+                
+                let maints = 0;
+                let totalInterval = airplane.maintInterval;
+                airplane.mLogs.forEach(log => {
+                    maints++;
+                    totalInterval += airplane.maintInterval;
+                })
+        
+                let status = "Flight Ready";
+                if(totalTime >= totalInterval){
+                    status = "Maintenance Required";
+                } else {
+                    status = "Flight Ready";
+                }
+            %>
             <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    <% if(status == "Maintenance Required"){ %>
+                        <div style="text-align: right;"><span class="badge badge-pill badge-warning"><%= status %></span></div>
+                    <% } else { %> 
+                        <div style="text-align: right;"><span class="badge badge-pill badge-success"><%= status %></span></div>
+                    <% } %> 
+                </div>
                 <div class="card-body">
                 <h5 class="card-title"><%= airplane.name %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Summary</h6>
-                    <%  let totalTime = 0;
-                        let flights = 0;
-                        airplane.flightLogs.forEach(log => {
-                            flights++;
-                            totalTime += log.duration; %>
-                    <% }) %>
                 <p class="card-text">Flight Count: <%= flights %></p>
                 <p class="card-text">Accumulated Flight Time: <%= totalTime %> minutes</p>
                 <a href="/airplanes/view/<%= airplane._id %>" class="btn btn-primary">View</a>

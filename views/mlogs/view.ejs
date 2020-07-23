@@ -1,0 +1,17 @@
+
+<div class="col mx-auto">
+    <h2>Maintenance Log</h2>
+    <div>
+        <div>
+            <h3><%= log.aircraft.name %> </h3>
+        </div>
+        <div>
+            <label>Description: </label>
+            <span><%= log.description %> </span>
+        </div>
+        <div>
+            <label>Flight Date: </label>
+            <span><%= moment(log.logDate).format(shortDateFormat) %> </span>
+        </div>
+    </div>
+    </div>

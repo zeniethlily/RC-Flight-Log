@@ -1,11 +1,20 @@
-<div class="col mx-auto">
+<div class="col-6 mx-auto">
 <h2>New Airplane!</h2>
 <div class="form-group">
-    <form action="/airplanes/new" method="POST">
+    <form action="/airplanes/new" method="POST" class="needs-validation" novalidate>
       <div class="row mb-3">
         <div class="col-6">
             <label>Airplane Name</label>
-          <input name="name" class="form-control" placeholder="Boing 747" />
+          <input name="name" class="form-control" placeholder="Boing 747" required/>
+          <div class="invalid-feedback">Please input a name.</div>
+        </div>
+        
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <label>Service Interval (minutes)</label>
+        <input type="number" name="maintInterval" class="form-control" placeholder="480" required/>
+        <div class="invalid-feedback">Please input a valid interval.</div>
         </div>
       </div>
       </div>

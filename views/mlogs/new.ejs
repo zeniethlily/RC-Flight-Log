@@ -1,15 +1,19 @@
-<h2>Add new maintenance log</h2>
+
 <div class="container">
-<form action="/mlogs/new/<%= airplane._id %>" method="POST">
+    <h2>New Maintenance Log</h2>
+<form action="/mlogs/new/<%= airplane._id %>" method="POST" class="needs-validation" novalidate>
     <div class="row md-3">
         <label>Description</label>
-        <input type="text" name="description" class="form-control" />
+        <input type="text" name="description" class="form-control" required/>
+        <div class="invalid-feedback">Please input a short description.</div>
     </div>
     
     <div class="row md-3">
         <label>Log Date</label>
-        <input type="date" name="logDate" class="form-control" />
+        <input type="date" name="logDate" class="form-control" required/>
+        <div class="invalid-feedback">Please select a date.</div>
     </div>
+    <br>
     <div>
         <button type="submit" class="btn btn-primary">Create Log</button>
     </div>

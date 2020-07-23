@@ -1,9 +1,11 @@
-<h2>Add new flightlog</h2>
+
 <div class="container">
-<form action="/flightlogs/new/<%= airplane._id %>" method="POST">
+    <h2>New Flight Log</h2>
+<form action="/flightlogs/new/<%= airplane._id %>" method="POST" class="needs-validation" novalidate>
     <div class="row md-3">
         <label>Description</label>
-        <input type="text" name="description" class="form-control" />
+        <input type="text" name="description" class="form-control" required/>
+        <div class="invalid-feedback">Please input a short description.</div>
     </div>
     <div class="row md-3">
         <label for="duration">Duration</label>
@@ -12,8 +14,10 @@
     </div>
     <div class="row md-3">
         <label>Flight Date</label>
-        <input type="date" name="flightDate" class="form-control" />
+        <input type="date" name="flightDate" class="form-control" required/>
+        <div class="invalid-feedback">Please select a date.</div>
     </div>
+    <br>
     <div>
         <button type="submit" class="btn btn-primary">Create Log</button>
     </div>
