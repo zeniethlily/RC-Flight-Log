@@ -42,4 +42,12 @@ router.get("/view/:id", (req, res) => {
     
 });
 
+router.get("/delete/:id", (req, res) => {
+    Airplane.findByIdAndDelete(req.params.id)
+    .then(res.redirect("/dashboard"))
+    .catch((err) => {
+        console.log(err);
+    });
+});
+
 module.exports = router;
